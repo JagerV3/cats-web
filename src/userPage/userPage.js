@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-const style = {
-  margin: 12,
-};
+
 class UserPage extends Component {
     constructor(props){
         super(props);

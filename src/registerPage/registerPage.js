@@ -19,6 +19,7 @@ class RegisterPage extends Component {
     }
     responseGoogle = (response) => {
         var user = response.profileObj;
+        console.log(user);
         var data = {
             'email': user.email,
             'name': user.givenName,
