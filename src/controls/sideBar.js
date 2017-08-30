@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import FontIcon from 'material-ui/FontIcon';
 import {Link} from 'react-router-dom';
 
 const logo = {
     height: '20%',
     backgroundColor: '#616161',
-    textAlign: 'center'
+    textAlign: 'center',
+    color: '#fff'
 };
 class SideBar extends Component {
     constructor(props){
@@ -26,7 +28,9 @@ class SideBar extends Component {
                 <Drawer open={this.state.open}
                     docked={false}
                     onRequestChange={(open) => this.setState({open})}>
-                    <div style={logo}>Cats App</div>
+                    <div style={logo}>
+                        <h3 style={{margin: 0}}> Cats App </h3>
+                    </div>
                     {this.props.items.map((item, index) => (
                         <Link key={index} to={item.path} style={{textDecoration: 'none'}}>
                             <MenuItem key={index} onClick={this.handleClose}>

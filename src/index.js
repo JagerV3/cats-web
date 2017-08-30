@@ -7,6 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HomePage from './homePage/homePage.js';
 import LoginPage from './loginPage/loginPage.js';
 import RegisterPage from './registerPage/registerPage.js';
+import UserPage from './userPage/userPage.js';
 import App from './App';
 import SideBar from './controls/sideBar.js';
 import './index.css';
@@ -45,6 +46,7 @@ ReactDOM.render(
                 <Route exact path="/" component={HomePage}/>
                 <Route path="/login" component={LoginPage}/>
                 <Route path="/register" component={RegisterPage}/>
+                <Route path="/user" component={UserPage} />
                 <Route path="/app" component={App} />
             </div>
         </MuiThemeProvider>
