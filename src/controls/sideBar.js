@@ -4,6 +4,11 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import {Link} from 'react-router-dom';
 
+const logo = {
+    height: '20%',
+    backgroundColor: '#616161',
+    textAlign: 'center'
+};
 class SideBar extends Component {
     constructor(props){
         super(props);
@@ -21,6 +26,7 @@ class SideBar extends Component {
                 <Drawer open={this.state.open}
                     docked={false}
                     onRequestChange={(open) => this.setState({open})}>
+                    <div style={logo}>Cats App</div>
                     {this.props.items.map((item, index) => (
                         <Link key={index} to={item.path} style={{textDecoration: 'none'}}>
                             <MenuItem key={index} onClick={this.handleClose}>

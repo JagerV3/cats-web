@@ -5,8 +5,7 @@ export const HomePage = (props) => {
     
     return(
         <div>
-            it is home page
-           
+            it is home page;
         </div>
     )
 }

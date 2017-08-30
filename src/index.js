@@ -10,6 +10,7 @@ import RegisterPage from './registerPage/registerPage.js';
 import App from './App';
 import SideBar from './controls/sideBar.js';
 import './index.css';
+
 const items = [
     {
         name: 'Login Page',
@@ -17,6 +18,22 @@ const items = [
     },
     {
         name: 'Register Page',
+        path: '/register'
+    },
+    {
+        name: 'Dashboard',
+        path: '/login'
+    },
+    {
+        name: 'Task',
+        path: '/register'
+    },
+    {
+        name: 'Team',
+        path: '/register'
+    },
+    {
+        name: 'Project',
         path: '/register'
     }
 ];
