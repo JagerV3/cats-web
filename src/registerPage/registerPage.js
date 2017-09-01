@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import GoogleLogin from 'react-google-login';
 import './registerPage.css';
+import receiveToken from '../actions/userActions';
 
 class RegisterPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            errorText: '',
-            isAuthienticate: false,
-            token :'',
-            isSignedUp: false,
-            email: ''
+            errorText: ''
          }
     }
     
-    componentDidMount() {
-        console.log("it is from component did mount");
-    }
     responseGoogle = (response) => {
+        const { dispatch, history } = this.props;
         var user = response.profileObj;
         var data = {
             'email': user.email,
@@ -32,22 +28,11 @@ class RegisterPage extends Component {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
-        }) 
-        .then(response=> {
-            if (response.ok) {
-                response.json().then(json => {
-                    this.setState({ isAuthienticate: true, token: json.token});
-                    this.props.location.state = json.token;
-                    this.props.history.push('/user');
-                });
-            } else {
-                this.setState({ isSignedUp: true, email: user.email, googleId: user.googleId});
-                this.setState({ errorText: 'Email is already existed. Try again'})
-            }
-        });
+          }).then(response => response.json())
+            .then(json => dispatch(receiveToken(user, json)))
+            .then(()=> history.push('/user'))
     }
     render() {
-        
         return (
             <form className="container">
                 <div style={{color: 'red'}}>{this.state.errorText}</div>
@@ -58,18 +43,6 @@ class RegisterPage extends Component {
                     onSuccess={this.responseGoogle}
                     onFailure={this.responseGoogle}
                 />
-                    {/* <h4 style={{ color: '#616161'}}> Register Page  </h4>
-                    <TextField
-                    hintText="Email"
-                    /><br /><br />
-                    <TextField
-                    hintText="Username"
-                    /><br /><br />
-                    <TextField 
-                    hintText="Password"
-                    type="password"
-                    /><br /><br />
-                    <RaisedButton label="Register" onClick={this.handleClick.bind(this)} primary={true} style={style} /> */}
                 </div>
             </form>
             
@@ -77,8 +50,6 @@ class RegisterPage extends Component {
     }
 }
 
-RegisterPage.defaultProps = {
-    name: 'Instagram Login'
-};
-
-export default RegisterPage;
+export default connect((state) => ({
+    token: state.token
+}))(RegisterPage);
